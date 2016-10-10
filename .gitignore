@@ -1,0 +1,26 @@
+application/logs/*
+perdana.zip
+application/cache/*
+## Sublime Text cache files
+perdana.sublime-project
+user_guide_src/cilexer/dist/*
+!application/cache/index.html
+!application/cache/.htaccess
+*.tmPreferences.cache
+!application/logs/.htaccess
+*.sublime-workspace
+!application/logs/index.html
+/user_guide
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+/vendor/
+*.stTheme.cache
+.DS_Store
+*.tmlanguage.cache
+/nbproject/
+# IDE Files
+user_guide_src/cilexer/pycilexer.egg-info/*
+/AdminLTE-2.3.6
+*.sublime-project
+.idea/*
+#-------------------------

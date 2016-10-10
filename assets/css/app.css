@@ -1,0 +1,115 @@
+.center {
+    text-align: center;
+}
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+.middle {
+    vertical-align: middle;
+}
+table.table thead tr.center th {
+    text-align: center;
+}
+table.table tbody tr.center td {
+    text-align: center;
+}
+table.table thead tr.left th {
+    text-align: left;
+}
+table.table tbody tr.left td {
+    text-align: left;
+}
+table.table thead tr.right th {
+    text-align: right;
+}
+table.table tbody tr.right td {
+    text-align: right;
+}
+table.table thead tr.middle th {
+    vertical-align: middle;
+}
+table.table tbody tr.middle td {
+    vertical-align: middle;
+}
+table.table thead tr.nowrap th {
+    white-space: nowrap;
+}
+.modal {
+    overflow: auto;
+}
+label.required:after {
+    content: ' *';
+    color: #F01D0D;
+}
+.form-group {
+    margin-bottom: 5px;
+}
+pre.clear {
+    margin: 0px;
+    padding: 8px 0px 0px 0px;
+    background: none;
+    border: none;
+    white-space: pre-wrap;
+}
+.rows-comments-content {
+    margin: 0px;
+    padding: 8px 0px 0px 0px;
+    background: none;
+    border: none;
+    /*white-space: pre-wrap;*/
+    word-wrap: break-word;
+    display: block;
+}
+.rows-comments-content p {
+    display: block;
+}
+.rows-comments-content br {
+    white-space: pre-line;
+}
+.ticket-content {
+    margin: 0px;
+    padding: 8px 0px 0px 0px;
+    background: none;
+    border: none;
+    /*white-space: pre-wrap;*/
+    word-wrap: break-word;
+    display: block;
+}
+.ticket-content p {
+    display: block;
+    margin: 0px;
+}
+.box-header {
+    padding: 5px;
+}
+.alert {
+    margin-bottom: 6px;
+}
+.products-list .product-info {
+  margin-left: 5px;
+}
+/*@media (max-width: 768px) {
+    .box-header > .fa, .box-header > .glyphicon, .box-header > .ion, .box-header .box-title {
+        margin: 35px 0 0;
+    }
+    .box-header .box-title .form-group {
+        margin-bottom: 0px;
+    }
+}*/
+.content-header h1 {
+    border-bottom: 1px solid #E0E0E0;
+    padding-bottom: 7px;
+}
+.box-comments .box-comment img.img-editor, .box-comments .box-comment .rows-comments-content img {
+    width: auto !important;
+    height: inherit !important;
+}
+.box-comments .box-comment .rows-comments-content p {
+    display: block;
+}
+input.text-capital {
+    text-transform: uppercase;
+}
