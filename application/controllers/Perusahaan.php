@@ -256,6 +256,63 @@ class Perusahaan extends CI_Controller {
         $this->load->view('perusahaan/perusahaan_view', $datas);
     }
 
+    public function history($id = "") {
+
+        if(!is_numeric($id)) {
+            die('required numeric id');
+        }
+
+        $datas = array("perusahaan_id" => $id,
+                      );
+        $this->load->view('perusahaan/perusahaan_history', $datas);
+
+
+
+    }
+
+    public function history_data($page = 0) {
+        $this->load->library('jquery_pagination');
+        $this->load->library('form_validation');
+        $this->load->model('history_ubah_saldo_model');
+
+        $this->form_validation->set_rules('cari_history', 'Cari', 'trim|xss_clean')
+                              ->set_rules('perusahaan', 'ID Perusahaan', 'trim|xss_clean|numeric')
+                              ->set_rules('per_page', 'Per Page', 'trim|xss_clean|numeric')
+                              ->set_error_delimiters('<div class="alert alert-warning alert-dismissable">
+                                                  <i class="fa fa-warning"></i>
+                                                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>');
+        if ($this->form_validation->run() === TRUE) {
+
+            $per_page = 10000;
+
+            $config_search = array("search" => $this->form_validation->set_value('cari_history'),
+                                   "perusahaan_id" => $this->form_validation->set_value('perusahaan'),
+                                   "per_page" => $per_page,
+                                   "page" => $page);
+
+            $config['base_url'] = base_url('perusahaan/history_data/');
+            $config['div'] = '#contentHistory';
+            $config['additional_param'] = 'serialize_history_form()';
+            $config['total_rows'] = $this->history_ubah_saldo_model->select_total($config_search);
+            $config['per_page'] = $per_page;
+            $config['cur_page'] = $page;
+            $config['uri_segment'] = 3;
+            $config['num_links'] = 3;
+            $this->jquery_pagination->initialize($config);
+            $pagination = $this->jquery_pagination->create_links();
+
+            $datas = array("historyList" => $this->history_ubah_saldo_model->select($config_search),
+                           "pagination" => $pagination,
+                           "per_page" => $per_page,
+                           "page" => $page);
+            $this->load->view('perusahaan/perusahaan_history_data', $datas);
+
+        } else {
+            echo $this->form_validation->error('cari');
+        }
+
+    }
+
     public function delete($id = '') {
         if(!is_numeric($id)) {
             die('required numeric id');

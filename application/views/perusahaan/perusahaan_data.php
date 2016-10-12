@@ -31,6 +31,7 @@
     <td><?php echo $perusahaan->penanggung_jawab ?></td>
     <td class="right"><?php echo $perusahaan->saldo ?></td>
     <td class="center">
+      <a href="<?php echo site_url('perusahaan/history/'.$perusahaan->id) ?>" class="dialog-fancybox"><i class="fa fa-history"></i></a>&nbsp;
       <a href="<?php echo site_url('perusahaan/edit/'.$perusahaan->id) ?>" class="dialog-fancybox"><i class="fa fa-edit"></i></a>
       <?php if($this->auth->isSuperAdmin()) { ?>
       &nbsp;&nbsp;

@@ -127,6 +127,18 @@ class Perusahaan_model extends CI_Model {
         return false;
     }
 
+    public function get_data_for_history($id) {
+         $query = $this->db->select('p.saldo')
+                           ->select('p.nama_perusahaan')
+                           ->where('p.id', $this->db->escape_str($id))
+                           ->get('perusahaan p');
+        // echo $this->db->last_query();
+        if(!empty($query) && $query->num_rows() > 0) {
+            return $query->row();
+        }
+        return false;
+    }
+
     public function insert($jData, $return_id = false) {
         if (!empty($jData)) {
             $data = json_decode($jData);
@@ -192,6 +204,10 @@ class Perusahaan_model extends CI_Model {
     public function update($jData) {
         if (!empty($jData)) {
             $data = json_decode($jData);
+
+            $dataPerusahaan = $this->get_data_for_history($data->id);
+            $saldo_awal = $dataPerusahaan->saldo;
+
             $this->db->trans_begin();
             try {
 
@@ -224,6 +240,20 @@ class Perusahaan_model extends CI_Model {
                         if ($this->db->trans_status() === FALSE) {
                             throw new Exception('Failed insert into users perusahaan: ' . $this->db->_error_message());
                         }
+                    }
+                }
+
+                if($saldo_awal != $data->saldo) {
+                    $this->db->set('datetime', UnFormatDateTime(CurrentDateTime(), 1))
+                              ->set('description', "Perubahan saldo perusahaan ".$dataPerusahaan->nama_perusahaan." dari ".FormatCurrency($saldo_awal,0)." menjadi ".FormatCurrency($data->saldo,0)." oleh ".$this->auth->get_username().".")
+                              ->set('saldo_awal', $saldo_awal)
+                              ->set('saldo_baru', $data->saldo)
+                              ->set('perusahaan_id', $data->id)
+                              ->set('users_id', $this->auth->get_user_id())
+                              ->insert('history_ubah_saldo');
+                    // echo $this->db->last_query();
+                    if ($this->db->trans_status() === FALSE) {
+                        throw new Exception('Failed insert into history ubah saldo: ' . $this->db->_error_message());
                     }
                 }
 
