@@ -35,9 +35,9 @@
                   </div>
                   <div class="form-group">
                     <select name="per_page" id="per_page" class="form-control input-sm" style="max-width: 120px">
-                      <option value="10">Per page 5</option>
+                      <option value="5">Per page 5</option>
                       <option value="10">Per page 10</option>
-                      <option value="20">Per page 20</option>
+                      <option value="20" selected="">Per page 20</option>
                       <option value="50">Per page 50</option>
                       <option value="100">Per page 100</option>
                       <option value="200">Per page 200</option>
