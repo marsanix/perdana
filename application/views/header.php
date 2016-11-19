@@ -53,7 +53,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?php echo site_url() ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">P<b>D</b></span>
       <!-- logo for regular state and mobile devices -->
